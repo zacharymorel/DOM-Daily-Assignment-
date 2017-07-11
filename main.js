@@ -105,6 +105,10 @@ fields.appendChild(form)
 for (var i = 0; i < formData.length; i++) {
   if (formData[i].type === 'select') {
     let select = document.createElement('select')
+    select.setAttribute('name', formData[i].label)
+    let placeHolderOption = document.createElement('option')
+    placeHolderOption.textContent = 'Select Language...'
+    select.appendChild(placeHolderOption)
     for (var n = 0; n < formData[i].options.length; n++) {
       let formOption = document.createElement('option')
       formOption.textContent = formData[i].options[n].label
@@ -112,6 +116,12 @@ for (var i = 0; i < formData.length; i++) {
       select.appendChild(formOption)
     }
     form.appendChild(select)
+  }
+  else if (formData[i].type === 'textarea') {
+    let textarea = document.createElement('textarea')
+    textarea.setAttribute('type', formData[i].type)
+    textarea.setAttribute('placeholder', formData[i].label)
+    form.appendChild(textarea)
   }
   else {
     let input = document.createElement('input')
